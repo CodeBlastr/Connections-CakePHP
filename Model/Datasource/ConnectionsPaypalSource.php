@@ -22,8 +22,9 @@ class ConnectionsPaypalSource extends DataSource {
         'apiUsername' => '',
         'apiPassword' => '',
         'apiSignature' => '',
-        'apiAppId' => 'APP-80W284485P519543T',
+        'apiAppId' => 'APP-80W284485P519543T', // Global Sandbox Application ID
         'apiPermissionScope' => array(),
+	'chainedPrimaryEmail' => '',
         'chainedPrimaryPercentage' => 0
     );
 

@@ -140,29 +140,33 @@ class ConnectionPaypal extends ConnectionsAppModel {
      */
     public function doChainedPayment($data) {
         
+	$percentage = ConnectionManager::getDataSource('paypal')->config['chainedPrimaryPercentage'] / 100;
+	
         $primaryAmount = number_format(
-                $data['amount'] * ConnectionManager::getDataSource('paypal')->config['chainedPrimaryPercentage'],
+                $data['amount'] * $percentage,
                 2);
         $secondaryAmount = number_format(
                 $data['amount'] - $primaryAmount,
                 2);
-        
+
         $request = array(
             'actionType' => 'PAY',
             'receiverList' => array(
-                'receiver(0)' => array(
-                    'email' => '',
-                    'amount' => $primaryAmount,
-                    'primary' => 'true'
-                ),
-                'receiver(1)' => array(
-                    'email' => '',
-                    'amount' => $secondaryAmount
+                'receiver' => array(
+		    array(
+			'email' => ConnectionManager::getDataSource('paypal')->config['chainedPrimaryEmail'],
+			'amount' => $data['amount'],
+			'primary' => 'true'
+			),
+		    array(
+			'email' => $data['secondaryAccount'],
+			'amount' => $secondaryAmount
+		    ),
                 ),
             ),
             'currencyCode' => 'USD',
-            'cancelUrl' => $this->referer(),
-            'returnUrl' => $this->referer(),
+            'cancelUrl' => $data['cancelUrl'],
+            'returnUrl' => $data['returnUrl'],
         );
         
         $result = $this->sendRequest('/AdaptivePayments/Pay', $request);
