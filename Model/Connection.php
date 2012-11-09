@@ -16,7 +16,7 @@ class Connection extends ConnectionsAppModel {
 	
 	public $Client = '';
 	
-	public $hasOne = array(
+	public $belongsTo = array(
 		'User' => array(
 			'className' => 'Users.User',
 			'foreignKey' => 'user_id',
