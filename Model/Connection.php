@@ -33,6 +33,24 @@ class Connection extends ConnectionsAppModel {
 	}
 	
 	
+	/**
+	 * This function runs after successful login, but before the redirection.
+	 * We may need to redirect them to a more important page than whatever the app was going to show them.
+	 * 
+	 * @param integer $userId
+	 */
+	public function afterLogin($userId) {
+		// get all of their connections
+		$connections = $this->find('all', array('conditions' => array('user_id' => $userId)));
+		
+		// run the afterLogin callback on all of them
+		foreach($connections as $connection) {
+			//App::i
+			//$Class = new $connection;
+		}
+	}
+	
+	
 	public function google($accessCode) {
 		
 		$connectType = 'google'; // used to match in case there is an update (don't change, unless you want all new records saved)
