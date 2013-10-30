@@ -24,7 +24,7 @@ class ConnectionsSchema extends CakeSchema {
 		'user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
 		'type' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 100, 'collate' => 'utf8_general_ci', 'comment' => 'facebook, twitter, etc.', 'charset' => 'utf8'),
 		'value' => array('type' => 'text', 'null' => false, 'default' => NULL, 'collate' => 'utf8_general_ci', 'comment' => 'serialized array of authentication responses', 'charset' => 'utf8'),
-		'class' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 255, 'collate' => 'utf8_general_ci', 'comment' => 'PathToCallbackClass', 'charset' => 'utf8'),
+		'class' => array('type' => 'string', 'null' => false, 'default' => NULL, 'collate' => 'utf8_general_ci', 'comment' => 'PathToCallbackClass', 'charset' => 'utf8'),
 		'creator_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 		'modifier_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
