@@ -23,6 +23,7 @@ class ConnectionsPaypalSource extends DataSource {
 
 	public function __construct($config = array()) {
 		parent::__construct($config);
+		$settings = array();
 		if (defined('__CONNECTIONS_PAYPAL')) {
 			$settings = unserialize(__CONNECTIONS_PAYPAL);
 		}
