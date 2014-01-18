@@ -57,7 +57,7 @@ class ConnectionPaypalController extends ConnectionsAppController {
 				}
 		    } else {
 				debug($success);
-				break;
+				exit;
 		    }
 		    
 		}
